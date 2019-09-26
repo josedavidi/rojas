@@ -10,6 +10,7 @@
 	if(mysqli_num_rows($usuario)>0)
 	{
 		$datosUsuario = mysqli_fetch_array($usuario);
+		
 		$_SESSION['user_id'] = $datosUsuario['id'];
 		$_SESSION['userActive'] = $datosUsuario['nombres'].' '.$datosUsuario['apellidos'];
 
