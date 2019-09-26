@@ -33,6 +33,11 @@
                 <div class="row">
                   <div class="col-sm-4 offset-4">
                     <form action="controller/storeScheduleProccess.php" method="POST">
+                      <select class="custom-select" name="age">
+                        <option>Seleccionar Periodo</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                      </select>
                       <select class="custom-select" name="mes">
                         <option>Seleccionar Mes</option>
                         <?php
