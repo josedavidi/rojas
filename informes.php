@@ -56,17 +56,19 @@
                       <th></th>
                     </tr>
                     <?php
-                      $eti = $db->query("SELECT DISTINCT equipo_tareas.eti, equipo_tareas_informe.id as eti_id, meses.nombre as mes_nombre, equipos.nombre as equipo_nombre, equipo_tareas_informe.estado as eti_estado, usuarios.nombres as user_name, usuarios.apellidos as user_lastname, equipo_tareas_informe.fecha as eti_fecha  FROM equipo_tareas_informe INNER JOIN meses ON equipo_tareas_informe.mes_id = meses.id INNER JOIN equipo_tareas ON equipo_tareas_informe.eti = equipo_tareas.eti INNER JOIN equipos ON equipo_tareas.equipo_id = equipos.id INNER JOIN usuarios ON equipo_tareas_informe.user_id = usuarios.id  WHERE age = 2019")or die('error'.mysqli_errno($db));
+                      $eti = $db->query("SELECT DISTINCT equipo_tareas.eti, equipo_tareas_informe.id as eti_id, equipo_tareas_informe.eti as idEti, meses.nombre as mes_nombre, equipos.nombre as equipo_nombre, equipo_tareas_informe.estado as eti_estado, usuarios.nombres as user_name, usuarios.apellidos as user_lastname, equipo_tareas_informe.fecha as eti_fecha  FROM equipo_tareas_informe INNER JOIN meses ON equipo_tareas_informe.mes_id = meses.id INNER JOIN equipo_tareas ON equipo_tareas_informe.eti = equipo_tareas.eti INNER JOIN equipos ON equipo_tareas.equipo_id = equipos.id INNER JOIN usuarios ON equipo_tareas_informe.user_id = usuarios.id  WHERE age = 2019")or die('error'.mysqli_errno($db));
 
                       while($fila = mysqli_fetch_array($eti))
                       {
                         echo "<tr>
+                                <td>".$fila['idEti']."</td>
                                 <td>".$fila['eti_id']."</td>
                                 <td>".$fila['mes_nombre']."</td>
                                 <td>".$fila['equipo_nombre']."</td>
                                 <td>".$fila['eti_estado']."</td>
                                 <td>".$fila['user_name']." ".$fila['user_lastname']."</td>
                                 <td>".$fila['eti_fecha']."</td>
+                                <td><button id='btn_showInfomrme' data-toggle='modal' data-target='#exampleModal' class='btn btn-info'><i class='far fa-file-alt'></i></button></td>
                               </tr>";
                       }
                     ?>
@@ -82,5 +84,26 @@
       </div>
     </section>
     <?php include'includes/scripts.php' ?>
+    <script src="js/detallesInforme.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detalles del Informe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="shoInforme"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger"><i class="fas fa-download"></i> Descargar Informe</button>
+      </div>
+    </div>
+  </div>
+</div>
   </body>
 </html>

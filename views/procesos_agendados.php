@@ -9,8 +9,7 @@
 
 ?>
 
-<select class="js-example-basic-multiple" name="tareas[]" multiple="multiple" style="width: 100%">
-	<option value="#">Selecciona las tareas</option>
+<select class="js-example-basic-multiple js-states form-control" name="tareas[]" multiple="multiple" style="width: 100%">
 	<?php
 		while($fila = mysqli_fetch_array($tareas))
 		{
@@ -21,6 +20,12 @@
 
 <script>
 	$(document).ready(function() {
-	    $('.js-example-basic-multiple').select2();
+	    $('.js-example-basic-multiple').select2({
+		    placeholder: {
+			    id: '-1', // the value of the option
+			    text: 'Select an option'
+			  }
+		});
+
 	});
 </script>

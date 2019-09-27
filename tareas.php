@@ -81,7 +81,7 @@
           </div>
           <div class="modal-body">
             <br>
-            <form method="POST" action="controller/storeEquipoTareas.php">
+            <form method="POST" action="controller/storeEquipoTareas.php" enctype="multipart/form-data">
               <div class="form-group">
                 <h5><i class="far fa-list-alt"></i> Eliga las tareas realizadas al equipo</h5>
                 <div id="showProcesosgendados"></div>
@@ -104,7 +104,7 @@
               </div>
               <div class="form-group">
                 <label for="foto"><b><i class="fas fa-camera"></i> Adjuntar Imagen del equipo</b></label>
-                <input type="file" class="form-control" id="foto" required name="foto">
+                <input type="file" class="form-control" id="foto" required name="foto" id="foto" accept="image/*">
               </div>
               <div class="form-group">
                 <label><b>Observaciones:</b></label>
