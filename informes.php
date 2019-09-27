@@ -61,7 +61,7 @@
                       while($fila = mysqli_fetch_array($eti))
                       {
                         echo "<tr>
-                                <td>".$fila['idEti']."</td>
+                                <td style='display:none'>".$fila['idEti']."</td>
                                 <td>".$fila['eti_id']."</td>
                                 <td>".$fila['mes_nombre']."</td>
                                 <td>".$fila['equipo_nombre']."</td>
@@ -97,10 +97,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <div id="shoInforme"></div>
+        <form action="generarInformePdf.php" method="POST">
+          <div id="shoInforme"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger"><i class="fas fa-download"></i> Descargar Informe</button>
+          <button class="btn btn-danger"><i class="fas fa-download"></i> Descargar Informe</button>
+        </form>
       </div>
     </div>
   </div>
