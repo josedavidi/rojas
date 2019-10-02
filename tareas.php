@@ -103,8 +103,8 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="foto"><b><i class="fas fa-camera"></i> Adjuntar Imagen del equipo</b></label>
-                <input type="file" class="form-control" id="foto" required name="foto" id="foto" accept="image/*">
+                <label for="foto"><b><i class="fas fa-camera"></i> Adjuntar Imagenes del trabajo</b></label>
+                <input type="file" class="form-control" id="foto" required name="foto[]" id="foto" accept="image/*" multiple>
               </div>
               <div class="form-group">
                 <label><b>Observaciones:</b></label>
