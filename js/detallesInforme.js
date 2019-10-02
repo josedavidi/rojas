@@ -1,6 +1,7 @@
 $(document).ready(function(){
-	$('#btn_showInfomrme').click(function(){
+	$('.btn_showInfomrme').click(function(){
 		var etiId = $(this).parents('tr').find('td')[0].innerHTML;
+
 		$.ajax({
 			url:'views/detalleInforme.php',
 			type:'GET',

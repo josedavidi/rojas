@@ -68,7 +68,7 @@
                                 <td>".$fila['eti_estado']."</td>
                                 <td>".$fila['user_name']." ".$fila['user_lastname']."</td>
                                 <td>".$fila['eti_fecha']."</td>
-                                <td><button id='btn_showInfomrme' data-toggle='modal' data-target='#exampleModal' class='btn btn-info'><i class='far fa-file-alt'></i></button></td>
+                                <td><button data-toggle='modal' data-target='#exampleModal' class='btn btn-info btn_showInfomrme'><i class='far fa-file-alt'></i></button></td>
                               </tr>";
                       }
                     ?>
