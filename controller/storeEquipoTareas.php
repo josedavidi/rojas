@@ -9,10 +9,6 @@
 	$mes = $_POST['mes'];
 	$date = $_POST['fecha'];
 	$estado = $_POST['estadoEquipo'];
-
-	$dir_subida = "../images/equipos/";
-	$archivo_subido = $dir_subida.basename($_FILES['foto']['name']);
-	move_uploaded_file($_FILES['foto']['tmp_name'], $archivo_subido);
 	
 
 	$detalle = $_POST['observacion'];
@@ -20,7 +16,17 @@
 	$create_at = date("d/m/y H:i a");
 	$eti = rand(1,10000);
 
-	$saveInforme = $db->query("INSERT INTO equipo_tareas_informe VALUES(0,'$user','$date','$mes','$estado','$archivo_subido','$detalle','$age','$eti','$create_at')")or die('error'.mysqli_errno($db));
+	for($i=0; $i<count($_FILES['foto']['name']); $i++)
+	{
+		$dir_subida = "../images/equipos/";
+		$archivo_subido = $dir_subida.basename($_FILES['foto']['name'][$i]);
+		move_uploaded_file($_FILES['foto']['tmp_name'][$i], $archivo_subido);
+
+		$save_images = $db->query("INSERT INTO equipo_fotos VALUES(0,'$archivo_subido',$eti)") or die('error'.mysqli_errno($db));
+	}
+
+
+	$saveInforme = $db->query("INSERT INTO equipo_tareas_informe VALUES(0,'$user','$date','$mes','$estado','$detalle','$age','$eti','$create_at')")or die('error'.mysqli_errno($db));
 
 
 	foreach($tareas as $tarea)
