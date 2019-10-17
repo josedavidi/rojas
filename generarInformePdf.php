@@ -12,6 +12,7 @@
 
 	$fotos = $db->query("SELECT * FROM equipo_fotos WHERE eti='$eti'")or die('error'.mysqli_errno($db));
 	
+	$tareas = $db->query("SELECT procesos.nombre as proceso_nombre  FROM equipo_tareas INNER JOIN procesos ON equipo_tareas.proceso_id = procesos.id WHERE eti='$eti'")or die('error'.mysqli_errno($db));
 
 
 	$contenido = "<table border='' cellspacing='0' cellpadding='6' width='100%'>
@@ -58,7 +59,12 @@
 	</tr>
 	<tr>
 		<td>Actividades:</td>
-		<td></td>
+		<td>";
+		while ($filaProcesos = mysqli_fetch_array($tareas) ) {
+			$contenido.="<p>".$filaProcesos['proceso_nombre']."</p>";
+		}
+	$contenido.="
+		</td>
 	</tr>
 	<tr>
 		<td>Observaciones:</td>
