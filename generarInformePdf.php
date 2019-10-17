@@ -14,7 +14,7 @@
 	
 
 
-	$contenido = "<table border='1' cellspacing='0' cellpadding='0' width='100%'>
+	$contenido = "<table border='1' cellspacing='0' cellpadding='6' width='100%'>
 	<tr>
 		<td colspan='2'><br></td>
 	</tr>
@@ -63,10 +63,10 @@
 		<td>".$dataInforme['eti_desc']."</td>
 	</tr>
 
-	<tr style='margin-top:40px'>";
+	<tr>";
 	while($fila = mysqli_fetch_array($fotos))
 	{
-		$contenido.= "<td><img width='300' src='".str_replace('../', '', $fila['nombre'])."'></td>";
+		$contenido.= "<td style='padding:25px'><img width='300' src='".str_replace('../', '', $fila['nombre'])."'></td>";
 	}
 	$contenido.="</tr></table>";
 
