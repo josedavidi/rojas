@@ -14,20 +14,24 @@
 	
 
 
-	$contenido = "<table>
+	$contenido = "<table border='1' cellspacing='0' cellpadding='0' width='100%'>
 	<tr>
-		<td colspan='2' align='center'>
-			<img src='".str_replace('../','', $dataInforme['equipo_foto'])."'>
+		<td colspan='2'><br></td>
+	</tr>
+	<tr>
+		<td colspan='2'><h1 style='color:red'>INFORME #ETI ".$dataInforme['eti_id']."</h1></td>
+	</tr>
+	<tr>
+		<td colspan='2'><br></td>
+	</tr>
+	<tr style='background:#EFEDF1;'>
+		<td colspan='2' align='center' style='padding:20px;'>
+			<img width='390' src='".str_replace('../','', $dataInforme['equipo_foto'])."'>
 			<br>
 		</td>
 	</tr>
 	<tr>
-		<td colspan='2'><h1>INFORME #ETI ".$dataInforme['eti_id']."</h1></td>
-	</tr>
-	<tr>
-		<td colspan='2'><img src=''></td>
-	</tr>
-	<tr>
+		<td><br></td>
 		<td><br></td>
 	</tr>
 	<tr>
@@ -57,10 +61,12 @@
 	<tr>
 		<td>Observaciones:</td>
 		<td>".$dataInforme['eti_desc']."</td>
-	</tr><tr>";
+	</tr>
+
+	<tr style='margin-top:40px'>";
 	while($fila = mysqli_fetch_array($fotos))
 	{
-		$contenido.= "<td colspan='2'><img width='300' src='".str_replace('../', '', $fila['nombre'])."'></td>";
+		$contenido.= "<td><img width='300' src='".str_replace('../', '', $fila['nombre'])."'></td>";
 	}
 	$contenido.="</tr></table>";
 
