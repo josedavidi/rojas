@@ -14,9 +14,11 @@
 	
 
 
-	$contenido = "<table border='1' cellspacing='0' cellpadding='6' width='100%'>
+	$contenido = "<table border='' cellspacing='0' cellpadding='6' width='100%'>
 	<tr>
-		<td colspan='2'><br></td>
+		<td colspan='2' align='center'>
+			<img width='200' src='images/logo.png'>
+		</td>
 	</tr>
 	<tr>
 		<td colspan='2'><h1 style='color:red'>INFORME #ETI ".$dataInforme['eti_id']."</h1></td>
@@ -63,12 +65,12 @@
 		<td>".$dataInforme['eti_desc']."</td>
 	</tr>
 
-	<tr>";
+	<tr style='background:#EFEDF1;'><td style='padding:25px' colspan='2' align='center'>";
 	while($fila = mysqli_fetch_array($fotos))
 	{
-		$contenido.= "<td style='padding:25px'><img width='300' src='".str_replace('../', '', $fila['nombre'])."'></td>";
+		$contenido.= "<img style='border:9px solid black; margin:10px;' width='450' src='".str_replace('../', '', $fila['nombre'])."'>";
 	}
-	$contenido.="</tr></table>";
+	$contenido.="</td></tr></table>";
 
 	$mpdf = new \Mpdf\Mpdf();
 	$mpdf->WriteHTML($contenido);
