@@ -39,6 +39,16 @@
 		echo "<script>alert('Tareas registradas exitosamente');location.href='../tareas.php'</script>";
 	}
 
+	$para      = 'ispwebdavid@gmail.com';
+	$titulo    = 'Informe de Actividades';
+	$mensaje   = 'El tecnico, ha realizado las siguientes tareas en el equipo';
+
+	$cabeceras = 'From: info@rojasingenieria.ec' . "\r\n" .
+	    'Reply-To: info@rojasingenieria.ec' . "\r\n" .
+	    'X-Mailer: PHP/' . phpversion();
+
+	mail($para, $titulo, $mensaje, $cabeceras);
+
 	mysqli_close($db);
 	
 

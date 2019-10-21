@@ -15,7 +15,7 @@
 	$tareas = $db->query("SELECT procesos.nombre as proceso_nombre  FROM equipo_tareas INNER JOIN procesos ON equipo_tareas.proceso_id = procesos.id WHERE eti='$eti'")or die('error'.mysqli_errno($db));
 
 
-	$contenido = "<table border='' cellspacing='0' cellpadding='6' width='100%'>
+	$contenido = "<table style='font-size:23px; font-family:helvetica' cellspacing='0' cellpadding='6' width='100%'>
 	<tr>
 		<td colspan='2' align='center'>
 			<img width='200' src='images/logo.png'>
@@ -38,27 +38,23 @@
 		<td><br></td>
 	</tr>
 	<tr>
-		<td>Fecha de realizacion:</td>
+		<td style='font-weight:bold'>Fecha de realizacion:</td>
 		<td>".$dataInforme['eti_fecha']."</td>
 	</tr>
 	<tr>
-		<td>Mes:</td>
+		<td style='font-weight:bold'>Mes:</td>
 		<td>".$dataInforme['mes_nombre']."</td>
 	</tr>
 	<tr>
-		<td>Equipo:</td>
+		<td style='font-weight:bold'>Equipo:</td>
 		<td>".$dataInforme['equipo_nombre']."</td>
 	</tr>
 	<tr>
-		<td>Estado:</td>
+		<td style='font-weight:bold'>Estado:</td>
 		<td>".$dataInforme['eti_estado']."</td>
 	</tr>
 	<tr>
-		<td>Responsable:</td>
-		<td>".$dataInforme['user_name']." ".$dataInforme['user_lastname']."</td>
-	</tr>
-	<tr>
-		<td>Actividades:</td>
+		<td style='font-weight:bold'>Actividades:</td>
 		<td>";
 		while ($filaProcesos = mysqli_fetch_array($tareas) ) {
 			$contenido.="<p>".$filaProcesos['proceso_nombre']."</p>";
@@ -67,16 +63,24 @@
 		</td>
 	</tr>
 	<tr>
-		<td>Observaciones:</td>
+		<td style='font-weight:bold'>Observaciones:</td>
 		<td>".$dataInforme['eti_desc']."</td>
 	</tr>
 
-	<tr style='background:#EFEDF1;'><td style='padding:25px' colspan='2' align='center'>";
+	<tr style='background:#EFEDF1;'>
+	<td style='padding:25px' colspan='2' align='center'>";
 	while($fila = mysqli_fetch_array($fotos))
 	{
 		$contenido.= "<img style='border:9px solid black; margin:10px;' width='450' src='".str_replace('../', '', $fila['nombre'])."'>";
 	}
-	$contenido.="</td></tr></table>";
+	$contenido.="</td></tr>
+	<tr>
+		<td align='center' colspan='2'>
+			".$dataInforme['user_name']." ".$dataInforme['user_lastname']."
+			<br>
+			<b>Responsable</b>
+		</td>
+	</tr></table>";
 
 	$mpdf = new \Mpdf\Mpdf();
 	$mpdf->WriteHTML($contenido);

@@ -11,6 +11,7 @@
 	{
 		$datosUsuario = mysqli_fetch_array($usuario);
 		
+		$_SESSION['rol'] = $datosUsuario['rol'];
 		$_SESSION['user_id'] = $datosUsuario['id'];
 		$_SESSION['userActive'] = $datosUsuario['nombres'].' '.$datosUsuario['apellidos'];
 
