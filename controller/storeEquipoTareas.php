@@ -39,9 +39,27 @@
 		echo "<script>alert('Tareas registradas exitosamente');location.href='../tareas.php'</script>";
 	}
 
+	$userData = $db->query("SELECT * FROM usuarios WHERE id ='$user'")or die('error'.mysqli_errno($db));
+
+	$userInfo = mysqli_fetch_array($userData);
+
+
+
 	$para      = 'ispwebdavid@gmail.com';
 	$titulo    = 'Informe de Actividades';
-	$mensaje   = 'El tecnico, ha realizado las siguientes tareas en el equipo';
+	$mensaje   = 'El tecnico '.$userInfo["nombres"].' '.$userInfo["apellidos"].' ha realizado las siguientes tareas: ';
+	foreach ($tareas as $tarea) {
+		$procesos = $db->query("SELECT * FROM procesos WHERE id ='$tarea'")or die('errorTarea'.mysqli_errno($db));
+
+		while($filaTarea=mysqli_fetch_array($procesos)){
+			$mensaje.= $filaTarea['nombre'].' - ';
+		}	
+	}
+
+	 $buscar_equipo = $db->query("SELECT * FROM equipos WHERE id ='$equipo'")or die('errorEquipos'.mysqli_errno($db));
+	 $equipoInfo = mysqli_fetch_array($buscar_equipo);
+
+	 $mensaje.='en el equipo '.$equipoInfo['nombre'];
 
 	$cabeceras = 'From: info@rojasingenieria.ec' . "\r\n" .
 	    'Reply-To: info@rojasingenieria.ec' . "\r\n" .

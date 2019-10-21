@@ -15,8 +15,6 @@
 		{
 			echo "<script>alert('Agenda re[etida');location.href='../schedule_process.php'</script>";
 			return false;
-		}else{
-			echo "save";
 		}
 	}
 
