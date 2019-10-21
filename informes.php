@@ -8,6 +8,8 @@
 <html lang="en">
   <head>
     <?php include'includes/head.php' ?>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <title>ROJAS INGENIERIA</title>
   </head>
   <body>
@@ -44,7 +46,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <table class="table table-striped">
+                <table id="myTable" class="display">
                   <thead>
                     <tr>
                       <th>ETI</th>
@@ -57,6 +59,8 @@
                       <th>FECHA</th>
                       <th></th>
                     </tr>
+                  </thead>
+                  <tbody>
                     <?php
                       $eti = $db->query("SELECT DISTINCT equipo_tareas.eti, equipo_tareas_informe.id as eti_id, equipo_tareas_informe.eti as idEti, meses.nombre as mes_nombre, equipos.nombre as equipo_nombre, equipos.foto as equipo_foto, equipo_tareas_informe.estado as eti_estado, usuarios.nombres as user_name, usuarios.apellidos as user_lastname, equipo_tareas_informe.fecha as eti_fecha  FROM equipo_tareas_informe INNER JOIN meses ON equipo_tareas_informe.mes_id = meses.id INNER JOIN equipo_tareas ON equipo_tareas_informe.eti = equipo_tareas.eti INNER JOIN equipos ON equipo_tareas.equipo_id = equipos.id INNER JOIN usuarios ON equipo_tareas_informe.user_id = usuarios.id  WHERE age = 2019")or die('error'.mysqli_errno($db));
 
@@ -75,7 +79,7 @@
                               </tr>";
                       }
                     ?>
-                  </thead>
+                  </tbody>
                 </table>
               </div>
               <div class="card-footer text-muted">
@@ -110,5 +114,10 @@
     </div>
   </div>
 </div>
+ <script>
+   $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+ </script>
   </body>
 </html>
